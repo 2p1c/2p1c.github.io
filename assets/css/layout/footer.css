@@ -1,0 +1,32 @@
+.google-footer {
+    /* --- 布局和背景 --- */
+    width: 100%;
+    /* 固定的浅灰色背景，非常Google风格 */
+    background-color: #f2f2f2; 
+    /* 上下内边距，提供充足的呼吸空间 */
+    padding: 15px 30px; 
+    /* 文本居中对齐，如果您希望它在左侧，请改为 text-align: left; */
+    text-align: center; 
+    /* 固定在页面底部（可选，但常见于页脚） */
+    /* position: fixed;  */
+    bottom: 0; 
+    border-top: 1px solid #e4e4e4; /* 顶部有一条极细的分割线 */
+}
+
+.google-footer .copyright-text {
+    /* --- 字体和颜色 --- */
+    /* 使用无衬线字体，模拟 Google 的简洁感 */
+    font-family: Arial, sans-serif; 
+    /* 字体大小略小 */
+    font-size: 13px; 
+    /* 低对比度的灰色文本，不抢走主要内容的风头 */
+    color: #70757a; 
+    /* 移除段落默认的边距，确保布局紧凑 */
+    margin: 0; 
+    padding: 0;
+}
+
+footer{
+  font-size: 14px;
+  color: #ffffff;
+}

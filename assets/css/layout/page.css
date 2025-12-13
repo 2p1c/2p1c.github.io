@@ -1,0 +1,8 @@
+.smooth-scroll {
+  will-change: transform;
+  width: 100%;
+  padding-top: 50px;
+  position: fixed; /* 改为固定定位 */
+  top: 0;
+  left: 0;
+}

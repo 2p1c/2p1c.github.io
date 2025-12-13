@@ -1,0 +1,28 @@
+.image-container {
+  display: flex;
+  flex-direction: column; /* 垂直排列图片和文本 */
+  align-items: center; /* 水平居中 */
+  text-align: center;
+  margin: 10px;
+}
+
+.image-container img {
+  display: block;
+  margin-bottom: 10px; /* 图片与文本间距 */
+}
+
+.image-container p {
+  margin: 0; /* 移除默认margin */
+  text-align: center;
+}
+
+/* 玻璃卡片效果 */
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 40px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}

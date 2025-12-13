@@ -1,0 +1,43 @@
+html {
+  background: linear-gradient(to bottom, #7a282d);
+  font-size: 20px;
+  color: white;
+  font-family: "Alata", "Gloock", "Noto Serif SC", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  overscroll-behavior: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #ffd700;
+  text-decoration: none; /* 悬停时显示下划线 */
+}
+
+h1 {
+  font-size: bold;
+}
+
+ul {
+  background: white;
+  padding: 100px 200px;
+  border: 1px solid black;
+}
+
+li a {
+  margin-left: 20px;
+  color: #7c2a2f;
+}

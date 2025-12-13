@@ -1,0 +1,22 @@
+/* 图片容器组 - 让多个图片容器可以并列 */
+.images-wrapper {
+  display: flex;
+  flex-wrap: wrap; /* 允许换行 */
+  justify-content: center; /* 水平居中 */
+  gap: 20px; /* 图片之间的间距 */
+  margin: 20px 0;
+}
+
+.input {
+  text-align: center;
+}
+
+.Google-verify-link {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.Google-verify-link:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
