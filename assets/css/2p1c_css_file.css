@@ -1,5 +1,5 @@
 html {
-  background: linear-gradient(to bottom, #0a0a0a);
+  background: linear-gradient(to bottom, #7a282d);
   font-size: 20px;
   color: white;
   font-family: "Alata", "Gloock", "Noto Serif SC", serif;
@@ -14,6 +14,8 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -36,8 +38,9 @@ ul {
   border: 1px solid black;
 }
 
-li {
+li a {
   margin-left: 20px;
+  color: #7c2a2f;
 }
 /* 图片容器组 - 让多个图片容器可以并列 */
 .images-wrapper {
@@ -83,6 +86,8 @@ li {
 
 .smooth-scroll {
   will-change: transform;
+  width: 100%;
+  padding-top: 50px;
 }
 
 .Google-verify-link {
@@ -92,4 +97,184 @@ li {
 .Google-verify-link:hover {
   color: #ffffff;
   text-decoration: none;
+}
+
+header li {
+  font-size: 14px;
+  color: #ffffff;
+}
+/* 固定的主导航栏 */
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  z-index: 1001;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.main-nav ul {
+  background-color: transparent;
+  padding: 0 40px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  list-style: none;
+  border: none;
+}
+
+.main-nav ul li {
+  margin: 0 20px;
+}
+
+.main-nav ul li a {
+  color: #5f6368;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.main-nav ul li a:hover {
+  color: #202124;
+}
+
+/* 触发区域 - 与主导航栏重叠 */
+.nav-trigger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  z-index: 1002;
+  pointer-events: all;
+}
+
+/* 详细导航栏容器 */
+.nav-container {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  transform: translateY(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 鼠标悬停时显示详细导航 */
+.nav-trigger:hover + .nav-container,
+.nav-container:hover,
+.main-nav:hover + .nav-trigger + .nav-container {
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+/* 详细导航栏样式 */
+.detail-nav {
+  background: #ffffff;
+  padding: 0;
+  margin: 0;
+  border: none;
+  box-shadow: none;
+  width: 100%;
+}
+
+.detail-nav ul {
+  background-color: transparent;
+  padding: 15px 40px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  list-style: none;
+  border: none;
+}
+
+.detail-nav ul li {
+  margin: 5px 15px;
+}
+
+.detail-nav ul li a {
+  color: #5f6368;
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.detail-nav ul li a:hover {
+  color: #202124;
+}
+
+.detail-nav form {
+  display: flex;
+  align-items: center;
+  padding: 10px 40px 20px;
+  gap: 10px;
+}
+
+.detail-nav form input[type="search"] {
+  padding: 8px 12px;
+  border: 1px solid #dfe1e5;
+  border-radius: 24px;
+  font-size: 14px;
+  outline: none;
+}
+
+.detail-nav form input[type="search"]:focus {
+  border-color: #4285f4;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+}
+
+.detail-nav form input[type="submit"] {
+  padding: 8px 16px;
+  background: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.detail-nav form input[type="submit"]:hover {
+  background: #357ae8;
+}
+.google-footer {
+    /* --- 布局和背景 --- */
+    width: 100%;
+    /* 固定的浅灰色背景，非常Google风格 */
+    background-color: #f2f2f2; 
+    /* 上下内边距，提供充足的呼吸空间 */
+    padding: 15px 30px; 
+    /* 文本居中对齐，如果您希望它在左侧，请改为 text-align: left; */
+    text-align: center; 
+    /* 固定在页面底部（可选，但常见于页脚） */
+    /* position: fixed; 
+    bottom: 0; */
+    border-top: 1px solid #e4e4e4; /* 顶部有一条极细的分割线 */
+}
+
+.google-footer .copyright-text {
+    /* --- 字体和颜色 --- */
+    /* 使用无衬线字体，模拟 Google 的简洁感 */
+    font-family: Arial, sans-serif; 
+    /* 字体大小略小 */
+    font-size: 13px; 
+    /* 低对比度的灰色文本，不抢走主要内容的风头 */
+    color: #70757a; 
+    /* 移除段落默认的边距，确保布局紧凑 */
+    margin: 0; 
+    padding: 0;
+}
+
+footer{
+  font-size: 14px;
+  color: #ffffff;
 }
