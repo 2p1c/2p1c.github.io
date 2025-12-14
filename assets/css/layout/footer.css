@@ -4,11 +4,11 @@
     /* 固定的浅灰色背景，非常Google风格 */
     background-color: #f2f2f2; 
     /* 上下内边距，提供充足的呼吸空间 */
-    padding: 15px 30px; 
+    padding: 10px 30px; 
     /* 文本居中对齐，如果您希望它在左侧，请改为 text-align: left; */
-    text-align: center; 
+    text-align: left; 
     /* 固定在页面底部（可选，但常见于页脚） */
-    /* position: fixed;  */
+    position: fixed; 
     bottom: 0; 
     border-top: 1px solid #e4e4e4; /* 顶部有一条极细的分割线 */
 }

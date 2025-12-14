@@ -9,18 +9,6 @@ info.textContent =
 main.appendChild(info);
 main.appendChild(list);
 
-// html.onclick = function() {
-//   const listItem = document.createElement('li');
-//   const listContent = prompt('What content do you want the list item to have?');
-//   listItem.textContent = listContent;
-//   list.appendChild(listItem);
-
-//   listItem.onclick = function(e) {
-//     e.stopPropagation();
-//     const listContent = prompt('Enter new content for your list item');
-//     this.textContent = listContent;
-//   }
-// }
 // 获取当前年份
   const year = new Date().getFullYear();
   // 找到 ID 为 "currentYear" 的 span 元素

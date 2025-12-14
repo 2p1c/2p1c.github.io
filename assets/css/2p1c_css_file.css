@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden; /* 完全禁止原生滚动 */
-  height: 100vh; /* 固定高度 */
+  height: 150vh; /* 固定高度 */
 }
 
 html {
