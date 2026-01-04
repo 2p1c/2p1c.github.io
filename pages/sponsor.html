@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <!-- 修改页面标题 -->
+    <title>页面标题 - 2p1c</title>
+
+    <!-- 注意: 所有路径都添加了 ../ 前缀，因为文件在 pages 子目录 -->
+    <link
+      rel="apple-touch-icon"
+      href="../assets/images/favicon.svg"
+      type="image/svg+xml"
+    />
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Anton&family=Gloock&family=Mitr:wght@200;300;400;500;600;700&family=Noto+Sans+SC:wght@100..900&family=Noto+Serif+SC:wght@200..900&family=Oswald:wght@200..700&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="author" content="2p1c" />
+    <meta name="description" content="修改此处的页面描述" />
+
+    <!-- CSS 文件 - 路径已修正 -->
+    <link rel="stylesheet" href="../css/main.css" />
+
+    <!-- JS 文件 - 路径已修正 -->
+    <script src="../js/scroll.js" defer></script>
+  </head>
+
+  <body>
+    <div class="smooth-scroll">
+      <!-- 固定的主导航栏 - 保持与主页一致 -->
+      <nav class="main-nav">
+        <ul>
+          <li>
+            <!-- 返回主页链接 - 路径已修正 -->
+            <a href="../index.html" class="icon-link">
+              <img
+                src="../assets/images/home.svg"
+                alt="主页"
+                width="24"
+                height="24"
+              />
+            </a>
+          </li>
+          <li><a href="team_introduction.html">团队</a></li>
+          <li><a href="projects_introduction.html">项目</a></li>
+          <li><a href="contact_us.html">联系我们</a></li>
+          <li>
+            <a href="sponsor.html" class="icon-link">
+              <img
+                src="../assets/images/money.svg"
+                alt="赞助"
+                width="24"
+                height="24"
+              />
+            </a>
+          </li>
+        </ul>
+        <form class="search-form">
+          <input type="search" name="q" />
+          <input type="submit" value="搜索" />
+        </form>
+      </nav>
+
+      <!-- 下拉的详细导航栏 - 保持与主页一致 -->
+      <div class="nav-container">
+        <nav class="detail-nav">
+          <ul>
+            <li><a href="#">关于我们</a></li>
+            <li><a href="#">团队成员</a></li>
+            <li><a href="#">项目案例</a></li>
+            <li><a href="#">技术栈</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- 
+        ==========================================
+        自定义 Header 区域
+        ==========================================
+        根据页面需求修改此区域的内容
+        可以添加页面特定的标题、图片或其他元素
+        如果不需要 header，可以删除整个 <header> 标签
+        ==========================================
+      -->
+      <header>
+        <h1>自定义页面标题</h1>
+        <div class="header-imgwrapper">
+          <p>自定义副标题或描述</p>
+          <!-- 可选：添加图片或其他内容 -->
+          <!-- <div class="header-imgcontainer">
+            <img src="../assets/images/your-image.jpg" alt="描述" width="80" height="96" />
+          </div> -->
+        </div>
+      </header>
+
+      <!-- 
+        ==========================================
+        主内容区域 - 高度固定为 130vh
+        ==========================================
+        在此区域添加您的页面内容
+        ==========================================
+      -->
+      <main>
+        <!-- 页面标题区 -->
+        <div class="page-title">
+          <h1>页面主标题</h1>
+          <p class="subtitle">页面副标题或简短描述</p>
+        </div>
+
+        <!-- 内容包装器 - 支持左右布局 -->
+        <div class="content-wrapper">
+          <!-- 主要内容区（左侧） -->
+          <div class="main-content">
+            <!-- 内容区块 1 -->
+            <section class="content-section">
+              <h2>区块标题 1</h2>
+              <p>
+                这里是内容区块的描述文本。您可以在这里添加段落、列表、图片等内容。
+              </p>
+              <p>支持多个段落和各种 HTML 元素。</p>
+            </section>
+
+            <!-- 内容区块 2 -->
+            <section class="content-section">
+              <h2>区块标题 2</h2>
+              <ul>
+                <li>列表项 1</li>
+                <li>列表项 2</li>
+                <li>列表项 3</li>
+              </ul>
+            </section>
+
+            <!-- 内容区块 3 - 可以包含图片 -->
+            <section class="content-section">
+              <h2>区块标题 3</h2>
+              <p>可以添加图片或其他媒体内容：</p>
+              <!-- <img src="../assets/images/example.jpg" alt="示例图片" /> -->
+            </section>
+          </div>
+
+          <!-- 侧边栏（右侧）- 可选 -->
+          <!-- 如果不需要侧边栏，可以删除此部分 -->
+          <aside class="sidebar">
+            <div class="sidebar-section">
+              <h3>侧边栏标题</h3>
+              <p>侧边栏内容，可以放置导航、相关链接或其他信息。</p>
+            </div>
+
+            <div class="sidebar-section">
+              <h3>相关链接</h3>
+              <ul>
+                <li><a href="#">链接 1</a></li>
+                <li><a href="#">链接 2</a></li>
+                <li><a href="#">链接 3</a></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+
+        <!-- 返回主页链接 -->
+        <div class="back-to-home">
+          <a href="../index.html">← 返回主页</a>
+        </div>
+      </main>
+
+      <!-- 页脚 - 保持与主页一致 -->
+      <footer class="google-footer">
+        <p class="copyright-text">
+          ©
+          <span id="currentYear">2025</span>
+          朱禹同. All Rights Reserved.
+        </p>
+      </footer>
+    </div>
+
+    <!-- 
+      ==========================================
+      使用说明
+      ==========================================
+      1. 修改 <title> 标签中的页面标题
+      2. 修改 meta description 中的页面描述
+      3. 自定义 <header> 区域的内容，或删除整个 header
+      4. 在 <main> 中添加您的页面内容
+      5. 使用 .content-section 创建新的内容区块
+      6. 如果不需要侧边栏，删除 <aside class="sidebar">
+      7. 所有图片和链接路径记得添加 ../ 前缀
+      ==========================================
+    -->
+  </body>
+</html>
