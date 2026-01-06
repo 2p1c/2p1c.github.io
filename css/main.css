@@ -11,3 +11,38 @@
 
 @import "./pages/home.css";
 @import "./pages/about.css";
+
+/* ==========================================
+   响应式二维码图片样式
+   ========================================== */
+.qr-code-image {
+  /* 设置最大宽度为容器的100%,确保不会超出容器 */
+  max-width: 100%;
+  /* 在移动设备上限制最大宽度为400px,避免过大 */
+  width: min(400px, 100%);
+  /* 保持图片原始宽高比,避免变形 */
+  height: auto;
+  /* 水平居中显示 */
+  display: block;
+  margin: 0 auto;
+  /* 添加圆角,提升视觉效果(可选) */
+  border-radius: 8px;
+  /* 添加阴影,使二维码更突出(可选) */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 在大屏幕上调整最大宽度 */
+@media (min-width: 768px) {
+  .qr-code-image {
+    /* 平板和桌面设备上可以稍微大一些 */
+    width: min(500px, 100%);
+  }
+}
+
+/* 在超大屏幕上进一步调整 */
+@media (min-width: 1200px) {
+  .qr-code-image {
+    /* 大屏幕上最大宽度600px */
+    width: min(600px, 100%);
+  }
+}
