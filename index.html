@@ -1,81 +1,39 @@
-<!DOCTYPE >
+<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <title>2p1c</title>
-    <link
-      rel="apple-touch-icon"
-      href="assets/images/favicon.png"
-      type="image/png"
-    />
-    <!-- <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" /> -->
-    <link rel="icon" href="assets/images/favicon.png" type="image/png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif+SC:wght@200..900&display=swap"
-      rel="stylesheet"
-    />
-    <meta name="author" content="2p1c" />
+
     <meta
       name="description"
       content="I'm 2p1c.I will display myself here.I will show works that I have done and doing.Some cool things are coming soon!On the road..."
     />
     <link rel="canonical" href="https://2p1c.github.io/" />
-    <link rel="stylesheet" href="./css/main.css" />
-    <script src="js/scroll.js" defer></script>
+
     <meta
       name="google-site-verification"
       content="xzzbuOk7Iaq70Oi_9cVUbJxh6zxB6ktgj3vvbGJiDwE"
     />
+
+    <!-- 关键CSS - 内联加载以防止FOUC -->
+    <link rel="stylesheet" href="css/components/loader.css" />
+
+    <!-- 组件加载器 -->
+    <script src="js/components-loader.js"></script>
+    <script src="js/scroll.js" defer></script>
   </head>
-
   <body>
-    <div class="smooth-scroll">
-      <!-- 固定的主导航栏 -->
-      <nav class="main-nav">
-        <ul>
-          <li>
-            <a href="index.html" class="icon-link">
-              <img
-                src="assets/images/home.svg"
-                alt="主页"
-                width="24"
-                height="24"
-              />
-            </a>
-          </li>
-          <li><a href="pages/team_introduction.html">团队</a></li>
-          <li><a href="pages/projects_introduction.html">项目</a></li>
-          <li><a href="pages/contact_us.html">联系我们</a></li>
-          <li>
-            <a href="pages/sponsor.html" class="icon-link">
-              <img
-                src="../assets/images/money.svg"
-                alt="赞助"
-                width="24"
-                height="24"
-              />
-            </a>
-          </li>
-        </ul>
-        <form class="search-form">
-          <input type="search" name="q" />
-          <input type="submit" value="搜索" />
-        </form>
-      </nav>
-
-      <!-- 下拉的详细导航栏 -->
-      <div class="nav-container">
-        <nav class="detail-nav">
-          <ul>
-            <li><a href="#">只是</a></li>
-            <li><a href="#">一</a></li>
-            <li><a href="#">个</a></li>
-            <li><a href="#">下拉框🙃</a></li>
-          </ul>
-        </nav>
+    <!-- 加载遮罩 - 显示优雅的加载动画 -->
+    <div id="page-loader">
+      <div class="loader-content">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">加载中...</div>
       </div>
+    </div>
+
+    <div class="smooth-scroll">
+      <!-- 导航栏占位符 - 添加骨架屏样式 -->
+      <div id="nav-placeholder" class="skeleton"></div>
 
       <header>
         <h1>This is header</h1>
@@ -100,6 +58,7 @@
           </div>
         </div>
       </header>
+
       <main>
         <h1>
           <a href="pages/google6162e445c5f1ef04.html" class="Google-verify-link"
@@ -120,13 +79,11 @@
         </div>
       </main>
 
-      <footer class="google-footer">
-        <p class="copyright-text">
-          ©
-          <span id="currentYear">2025</span>
-          朱禹同. All Rights Reserved.
-        </p>
-      </footer>
+      <!-- 页脚占位符 - 添加骨架屏样式 -->
+      <div id="footer-placeholder" class="skeleton"></div>
     </div>
+
+    <!-- 加载器脚本 - 必须在页面底部,在其他脚本之前 -->
+    <script src="js/loader.js"></script>
   </body>
 </html>

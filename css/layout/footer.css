@@ -1,32 +1,59 @@
+/**
+ * Google 风格页脚
+ * 固定在视口底部,不随页面滚动
+ */
+
 .google-footer {
-    /* --- 布局和背景 --- */
+    /* --- 布局 --- */
     width: 100%;
-    /* 固定的浅灰色背景，非常Google风格 */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    
+    /* --- 样式 --- */
     background-color: #f2f2f2; 
-    /* 上下内边距，提供充足的呼吸空间 */
+    border-top: 1px solid #e4e4e4;
+    
+    /* --- 间距 --- */
     padding: 10px 30px; 
-    /* 文本居中对齐，如果您希望它在左侧，请改为 text-align: left; */
-    text-align: left; 
-    /* 固定在页面底部（可选，但常见于页脚） */
-    position: fixed; 
-    bottom: 0; 
-    border-top: 1px solid #e4e4e4; /* 顶部有一条极细的分割线 */
+    
+    /* --- 对齐 --- */
+    text-align: left;
+    
+    /* --- 层级 --- */
+    z-index: 1002; /* 确保在导航栏(1001)之上 */
+    
+    /* --- 性能优化 --- */
+    will-change: transform; /* 提示浏览器优化渲染 */
 }
 
 .google-footer .copyright-text {
-    /* --- 字体和颜色 --- */
-    /* 使用无衬线字体，模拟 Google 的简洁感 */
+    /* --- 字体 --- */
     font-family: Arial, sans-serif; 
-    /* 字体大小略小 */
     font-size: 13px; 
-    /* 低对比度的灰色文本，不抢走主要内容的风头 */
+    line-height: 1.5;
+    
+    /* --- 颜色 --- */
     color: #70757a; 
-    /* 移除段落默认的边距，确保布局紧凑 */
+    
+    /* --- 间距 --- */
     margin: 0; 
     padding: 0;
 }
 
-footer{
+/* 通用 footer 标签样式 */
+footer {
   font-size: 14px;
-  color: #ffffff;
+  color: #70757a;
+}
+
+/* 响应式: 小屏幕优化 */
+@media (max-width: 768px) {
+  .google-footer {
+    padding: 8px 20px;
+  }
+  
+  .google-footer .copyright-text {
+    font-size: 12px;
+  }
 }

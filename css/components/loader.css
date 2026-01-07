@@ -1,0 +1,123 @@
+/**
+ * 页面加载器和防FOUC样式
+ * 必须内联到HTML <head> 中或作为第一个CSS文件加载
+ */
+
+/* 加载遮罩显示时隐藏body滚动条 */
+body:has(#page-loader) {
+  overflow: hidden;
+}
+
+/* 加载遮罩 - 覆盖整个页面 */
+#page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #7a282d);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.3s ease-in-out;
+  overflow: hidden; /* 确保加载器本身也不显示滚动条 */
+}
+
+/* 加载动画容器 */
+.loader-content {
+  text-align: center;
+}
+
+/* 加载图标容器 */
+.loader-spinner {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 缩放呼吸动画效果 */
+  animation: breathe 2s ease-in-out infinite;
+}
+
+/* 确保SVG图标填充容器 */
+.loader-spinner img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 缩放呼吸动画 - 从100%缩放到120%再回到100% */
+@keyframes breathe {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* 加载文字 */
+.loader-text {
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+/* 隐藏未加载完成的页面内容 */
+.smooth-scroll,
+.page-content {
+  display: none;
+  opacity: 0;
+}
+
+/* 骨架屏 - 占位符动画 */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* 导航栏骨架屏 */
+#nav-placeholder.skeleton {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #ffffff;
+  z-index: 1001;
+}
+
+/* 页脚骨架屏 */
+#footer-placeholder.skeleton {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #f2f2f2;
+  z-index: 1002;
+}
+
+/* 防止页面跳动 */
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+}
