@@ -8,6 +8,40 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+- **彻底解决线上 FOUC 问题**:修复页面部署到服务器后,在 JavaScript 加载前会短暂显示未样式化内容的严重问题
+  - 原因:外部 CSS 和 JS 在网络较慢时加载延迟,浏览器提前渲染了页面
+  - 方案:在所有 HTML 文件的 `<head>` 中内联防 FOUC 样式,确保内容在脚本执行前就被隐藏
+  - 影响:所有页面(主页 + 子页面)在任何网络条件下都能保持优雅的加载体验
+- **修复内容无法显示的 Bug**:解决使用 `display: none !important` 导致 JavaScript 无法正常显示页面内容的问题
+  - 改用 `visibility: hidden` 替代,保持元素布局同时允许脚本控制可见性
+  - 统一由 `loader.js` 控制页面显示时机,避免多个脚本冲突
+
+### Changed
+- **优化加载器显示逻辑**:重构 `showPageContent()` 函数,使用 `visibility` 和 `opacity` 组合实现平滑淡入效果
+- **分离职责**:明确 `loader.js` 负责页面显示,`components-loader.js` 只负责组件加载,消除功能重叠
+- **增强调试信息**:在关键步骤添加控制台日志(`📄 开始显示页面内容`、`✅ 内容容器已显示`等),便于排查问题
+
+### Technical Details
+- **内联 CSS 策略**:
+  ```css
+  /* 关键防 FOUC 样式 - 必须内联到 <head> */
+  body { overflow: hidden; }
+  .smooth-scroll, .page-content { 
+    visibility: hidden;  /* 而非 display: none */
+    opacity: 0;
+  }
+  ```
+- **显示流程优化**:
+  1. 浏览器解析 HTML → 立即应用内联样式(隐藏内容)
+  2. 加载并执行 `loader.js` → 显示加载动画
+  3. 页面加载完成 → 淡入内容 → 移除加载器
+- **兼容性**:适用于所有现代浏览器,包括移动端
+
+---
+
+## [1.1.0] - 2025-01-06
+
 ### Added
 - 组件化架构:导航栏和页脚现在作为独立组件动态加载,所有页面自动共享
 - 页面加载动画:新增优雅的加载遮罩和旋转动画,提升用户体验
@@ -24,7 +58,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - 页脚定位调整:页脚改为固定定位(`position: fixed`),始终显示在视口底部
 
 ### Fixed
-- 页面切换闪烁:完全消除页面加载时的无样式内容闪烁(FOUC)问题
+- 页面切换闪烁:完全消除页面加载时的无样式内容闪烁(FOUC)问题 *(注:线上部署后发现仍需内联 CSS)*
 - 平滑滚动失效:修复组件异步加载导致的滚动高度计算错误,现在会等待组件加载完成后再初始化
 - 页脚显示异常:解决页脚被内容遮挡和 z-index 层级冲突问题
 - 加载遮罩滚动条:修复加载动画显示时页面仍出现滚动条的问题
@@ -37,15 +71,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - 事件防抖优化:窗口 resize 事件添加 150ms 防抖,减少不必要的重复计算
 - **加载器超时保护**:添加 3 秒超时机制,确保即使加载失败页面内容也能正常显示
 
-### Technical Details
-- **加载器脚本** (`js/loader.js`):
-  - 支持 10 个加载图标的随机选择机制
-  - 图标文件命名规范:`assets/images/loader-1.svg` ~ `loader-10.svg`
-  - 自动路径检测:根据页面路径(`/pages/`子目录)自动添加`../`前缀
-  - 错误降级:图标加载失败时显示备用 CSS 动画
-  - 防重复机制:使用 `isContentShown` 标志防止多次触发
-  - 代码优化:移除所有调试日志,保持生产环境代码简洁
-
 ---
 
 ## [1.0.0] - 2025-01-06
@@ -57,4 +82,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-**注**: Unreleased 版本包含重大架构升级和加载体验优化,建议查阅 `COMPONENTS_README.md` 了解新的开发流程。
+**重要提示**: 从 v1.1.0 升级到最新版本时,请确保所有 HTML 文件都包含内联防 FOUC 样式,否则在生产环境可能出现闪烁问题。详见 `COMPONENTS_README.md` 的部署清单。

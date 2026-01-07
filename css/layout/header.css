@@ -105,7 +105,13 @@ header li {
   border-radius: 24px;
   font-size: 12px;
   outline: none;
-  background: #ffffff;
+  color: #000000; /* 添加字体颜色,与导航链接保持一致 */
+}
+
+/* 修改 placeholder 文本颜色 */
+.main-nav .search-form input[type="search"]::placeholder {
+  color: #cfd0d1; /* 使用与边框相同的颜色,也可以自定义 */
+  opacity: 1; /* 确保颜色完全显示 */
 }
 
 .main-nav .search-form input[type="search"]:focus {
@@ -120,7 +126,6 @@ header li {
   border: none;
   border-radius: 24px;
   font-size: 14px;
-  font-family: "Alata", "Gloock", "Noto Serif SC", serif;
   cursor: pointer;
   transition: background 0.2s;
 }
@@ -130,8 +135,8 @@ header li {
   color: black;
 }
 
-/* 响应式：在 768px 以下隐藏搜索框 */
-@media (max-width: 768px) {
+/* 响应式：在 700px 以下隐藏搜索框 */
+@media (max-width: 720px) {
   .main-nav .search-form {
     display: none;
   }
