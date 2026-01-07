@@ -4,6 +4,20 @@
     <meta charset="utf-8" />
     <title>Love Note - 2p1c</title>
     
+    <!-- ⭐ 内联防FOUC样式 - 修复版 -->
+    <style>
+      body { overflow: hidden; }
+      .smooth-scroll, .page-content { 
+        visibility: hidden;
+        opacity: 0;
+      }
+      #page-loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, #7a282d); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.3s ease-in-out; }
+      .loader-spinner { width: 50px; height: 50px; animation: breathe 2s ease-in-out infinite; }
+      .loader-spinner img { width: 100%; height: 100%; object-fit: contain; }
+      @keyframes breathe { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.8; } }
+      .loader-text { color: #ffffff; font-family: sans-serif; font-weight: bold; margin-top: 10px; opacity: 0.8; }
+    </style>
+
     <meta name="description" content="小记" />
 
     <!-- 关键CSS - 防止FOUC -->

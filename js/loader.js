@@ -1,6 +1,6 @@
 /**
  * 页面加载器 - 随机图标显示
- * 功能:在页面加载时随机选择并显示一个加载图标
+ * v1.2 修复: 解决内容无法显示的问题
  */
 
 (function() {
@@ -8,17 +8,16 @@
 
   // 配置项
   const CONFIG = {
-    iconCount: 10,           // 图标总数
-    iconPath: 'assets/images/',     // 图标文件夹路径
-    iconPrefix: 'loader-',   // 图标文件名前缀
-    iconExtension: '.svg',   // 图标文件扩展名
-    minDisplayTime: 300,     // 最小显示时间(毫秒)
-    maxWaitTime: 3000        // 最大等待时间(毫秒)
+    iconCount: 10,
+    iconPath: 'assets/images/',
+    iconPrefix: 'loader-',
+    iconExtension: '.svg',
+    minDisplayTime: 300,
+    maxWaitTime: 3000
   };
 
-  // 页面加载开始时间
   const startTime = Date.now();
-  let isContentShown = false; // 防止重复显示
+  let isContentShown = false;
 
   /**
    * 生成随机整数
@@ -32,7 +31,6 @@
    */
   function getRandomIconPath() {
     const randomNum = getRandomInt(1, CONFIG.iconCount);
-    // 检测是否在子目录中,调整路径
     const pathname = window.location.pathname;
     const isSubPage = pathname.includes('/pages/');
     const basePath = isSubPage ? '../' : '';
@@ -43,7 +41,6 @@
    * 显示页面内容(移除加载器)
    */
   function showPageContent() {
-    // 防止重复执行
     if (isContentShown) return;
     isContentShown = true;
 
@@ -52,47 +49,49 @@
     const pageContent = document.querySelector('.page-content');
     const targetContent = smoothScroll || pageContent;
 
-    // 显示页面内容
+    console.log('📄 开始显示页面内容...');
+
+    // 1. 显示页面内容 - 移除隐藏样式
     if (targetContent) {
-      targetContent.style.display = 'block';
-      // 强制浏览器重排
+      targetContent.style.visibility = 'visible';
+      targetContent.style.opacity = '0';
+      targetContent.style.transition = 'opacity 0.3s ease-in-out';
+      
+      // 触发重排后设置 opacity
       void targetContent.offsetHeight;
-      targetContent.style.opacity = '1';
+      
+      requestAnimationFrame(() => {
+        targetContent.style.opacity = '1';
+      });
+      
+      console.log('✅ 内容容器已显示:', targetContent.className);
     }
     
-    // 恢复body滚动
+    // 2. 恢复 body 滚动
     document.body.style.overflow = '';
     
-    // 移除加载器
+    // 3. 移除加载器
     if (loader) {
       loader.style.opacity = '0';
       setTimeout(() => {
         loader.remove();
+        console.log('✅ 加载器已移除');
       }, 300);
     }
   }
 
   /**
-   * 初始化加载器图标
+   * 早期初始化 - 在DOM解析期间就可以执行
    */
-  function initLoader() {
+  function earlyInit() {
     const loaderSpinner = document.querySelector('.loader-spinner');
-    
-    if (!loaderSpinner) {
-      showPageContent();
-      return;
-    }
+    if (!loaderSpinner) return;
 
-    // 获取随机图标路径
     const iconPath = getRandomIconPath();
-    
-    // 创建图片元素
     const iconImg = document.createElement('img');
     iconImg.src = iconPath;
     iconImg.alt = 'roll out the red carpet';
-    iconImg.setAttribute('aria-label', '页面加载中');
     
-    // 图标加载失败时使用备用动画
     iconImg.addEventListener('error', function() {
       loaderSpinner.innerHTML = `
         <div style="
@@ -106,9 +105,21 @@
       `;
     });
 
-    // 将图标添加到容器中
     loaderSpinner.innerHTML = '';
     loaderSpinner.appendChild(iconImg);
+  }
+
+  /**
+   * 初始化加载器图标
+   */
+  function initLoader() {
+    // 如果已经初始化过,跳过
+    const loaderSpinner = document.querySelector('.loader-spinner');
+    if (!loaderSpinner || loaderSpinner.querySelector('img')) {
+      return;
+    }
+    
+    earlyInit();
   }
 
   /**
@@ -126,6 +137,7 @@
   function setupTimeoutProtection() {
     setTimeout(function() {
       if (!isContentShown) {
+        console.warn('⚠️ 触发超时保护,强制显示内容');
         showPageContent();
       }
     }, CONFIG.maxWaitTime);
@@ -143,7 +155,10 @@
   // 设置超时保护
   setupTimeoutProtection();
 
-  // 初始化加载器
+  // 立即尝试初始化
+  earlyInit();
+
+  // DOMContentLoaded 后备
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initLoader);
   } else {

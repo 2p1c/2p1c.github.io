@@ -1,53 +1,10 @@
 /**
- * 组件加载器 v1.1
- * 
- * 新增功能:
- * - 页面加载状态管理
- * - 防止FOUC(无样式内容闪烁)
- * - 平滑的淡入效果
+ * 组件加载器 v1.2
+ * 修复: 不再干预页面显示逻辑,只负责加载组件
  */
 
 (function () {
   'use strict';
-
-  /**
-   * 显示页面内容(移除加载遮罩)
-   */
-  function showPageContent() {
-    const loader = document.getElementById('page-loader');
-    
-    // 尝试找到内容容器 (.smooth-scroll 或 .page-content)
-    const content = document.querySelector('.smooth-scroll') || 
-                   document.querySelector('.page-content') ||
-                   document.body;
-    
-    if (loader) {
-      // 淡出加载遮罩
-      loader.style.opacity = '0';
-      setTimeout(() => {
-        loader.style.display = 'none';
-      }, 300);
-    }
-    
-    if (content && content !== document.body) {
-      // 淡入页面内容
-      content.style.opacity = '0';
-      content.style.display = 'block';
-      
-      // 使用 requestAnimationFrame 确保动画流畅
-      requestAnimationFrame(() => {
-        content.style.transition = 'opacity 0.3s ease-in-out';
-        content.style.opacity = '1';
-      });
-    } else {
-      // 如果没有特定容器,直接移除body的隐藏
-      document.body.style.opacity = '0';
-      requestAnimationFrame(() => {
-        document.body.style.transition = 'opacity 0.3s ease-in-out';
-        document.body.style.opacity = '1';
-      });
-    }
-  }
 
   /**
    * 获取当前页面的根路径
@@ -186,16 +143,16 @@
     // 3. 更新页脚年份
     updateFooterYear();
 
-    // 4. 显示页面内容(移除加载遮罩)
-    showPageContent();
+    // ⭐ 移除了 showPageContent() 调用
+    // 让 loader.js 负责显示页面
 
-    // 5. 触发自定义事件,通知其他脚本组件已加载完成
+    // 4. 触发自定义事件,通知其他脚本组件已加载完成
     const loadTime = performance.now() - startTime;
     window.dispatchEvent(new CustomEvent('componentsLoaded', {
       detail: { loadTime }
     }));
     
-    console.log(`✅ 所有组件加载完成 (耗时: ${loadTime.toFixed(2)}ms)`);
+    console.log(`✅ 组件加载完成 (耗时: ${loadTime.toFixed(2)}ms)`);
   }
 
   // DOM 加载完成后执行初始化
